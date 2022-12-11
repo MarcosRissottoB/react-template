@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Center, Flex } from '@chakra-ui/react'
+
 import Navbar from '../components/navbar'
 
 interface Props {
