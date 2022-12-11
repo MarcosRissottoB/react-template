@@ -1,5 +1,5 @@
 import React from "react";
-import {CircularProgress, Center} from "@chakra-ui/react";
+import {CircularProgress, Center, Flex, Text} from "@chakra-ui/react";
 
 import { Character } from "./types"
 import api from "./api";
@@ -8,15 +8,36 @@ export interface Context {
   state: {characters: Character[]},
 }
 
-const CharacterContext = React.createContext({} as Context);
+const CharactersContext = React.createContext({} as Context);
 
-type Props = {
-  children?: React.ReactNode;
+interface Props {
+  children: React.ReactNode
 }
 
-const CharacterProvider: React.FC = (props: Props) => {
+const CharactersProvider: React.FC<Props> = ({ children }) => {
   const [characters, setCharacters] = React.useState<Character[]>([]);
   const [status, setStatus] = React.useState<"pending" | "resolved" | "rejected" >("pending")
+
+  React.useEffect(() => {
+    api.searchByName().then((characters) => {
+      setCharacters(characters);
+      setStatus("resolved");
+    })
+    .catch(() => {
+      setCharacters([]);
+      setStatus("rejected");
+    });
+  }, []);
+
+  if (status === "rejected") {
+    return (
+      <Flex alignItems="center" justifyContent="center" paddingY={12}>
+        <Text backgroundColor="primary.100" borderRadius="md" color="primary.700" padding={4}>
+          Press F to pay respect
+        </Text>
+      </Flex>
+    );
+  }
 
 
   if (!characters || status === "pending") {
@@ -31,7 +52,7 @@ const CharacterProvider: React.FC = (props: Props) => {
     characters
   };
 
-  return <><CharacterContext.Provider value={{state}}>{props.children}</CharacterContext.Provider></>
+  return <><CharactersContext.Provider value={{state}}>{children}</CharactersContext.Provider></>
 }
 
-export {  CharacterContext as default, CharacterProvider as Provider }
+export { CharactersContext as default, CharactersProvider as Provider }
