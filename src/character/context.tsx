@@ -23,7 +23,7 @@ interface Props {
 const CharactersProvider: React.FC<Props> = ({ children }) => {
   const [characters, setCharacters] = React.useState<responseCharacter | undefined>();
   const [secondCharacters, setSecondCharacters] = React.useState<responseCharacter | undefined>();
-  const [status, setStatus] = React.useState<"pending" | "resolved" | "rejected" >("pending")
+  const [status, setStatus] = React.useState<"pending" | "resolved" | "rejected" >("resolved")
 
   async function handleSearchByName(name: string, option?: boolean) {
      return api.characters.findByName(name).then((characters) => {
@@ -35,17 +35,6 @@ const CharactersProvider: React.FC<Props> = ({ children }) => {
       setStatus("resolved");
     })
   }
-
-  React.useEffect(() => {
-    api.characters.findByName(name).then((characters) => {
-      setCharacters(characters);
-      setStatus("resolved");
-    })
-    .catch(() => {
-      setCharacters(undefined);
-      setStatus("rejected");
-    });
-  }, []);
 
   if (status === "rejected") {
     return (
