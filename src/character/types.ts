@@ -17,3 +17,8 @@ export interface Character {
   "url": string,
   "created": string,
 }
+
+export interface responseCharacter {
+  "info": {count: number, pages: number, next: string, prev: null},
+  "results": Character[],
+}

@@ -1,11 +1,17 @@
 import React from "react";
 import {CircularProgress, Center, Flex, Text} from "@chakra-ui/react";
 
-import { Character } from "./types"
+import { responseCharacter } from "./types"
 import api from "./api";
 
 export interface Context {
-  state: {characters: Character[]},
+  state: {
+    characters: responseCharacter | undefined,
+    secondCharacters: responseCharacter | undefined,
+  };
+  actions: {
+    searchByName: (name: string, option?: boolean) => Promise<void>;
+  };
 }
 
 const CharactersContext = React.createContext({} as Context);
@@ -15,16 +21,28 @@ interface Props {
 }
 
 const CharactersProvider: React.FC<Props> = ({ children }) => {
-  const [characters, setCharacters] = React.useState<Character[]>([]);
+  const [characters, setCharacters] = React.useState<responseCharacter | undefined>();
+  const [secondCharacters, setSecondCharacters] = React.useState<responseCharacter | undefined>();
   const [status, setStatus] = React.useState<"pending" | "resolved" | "rejected" >("pending")
 
+  async function handleSearchByName(name: string, option?: boolean) {
+     return api.characters.findByName(name).then((characters) => {
+      if (option) {
+        setSecondCharacters(characters)
+      } else {
+        setCharacters(characters);
+      }
+      setStatus("resolved");
+    })
+  }
+
   React.useEffect(() => {
-    api.searchByName().then((characters) => {
+    api.characters.findByName(name).then((characters) => {
       setCharacters(characters);
       setStatus("resolved");
     })
     .catch(() => {
-      setCharacters([]);
+      setCharacters(undefined);
       setStatus("rejected");
     });
   }, []);
@@ -39,8 +57,7 @@ const CharactersProvider: React.FC<Props> = ({ children }) => {
     );
   }
 
-
-  if (!characters || status === "pending") {
+  if (status === "pending") {
     return (
       <Center padding={12}>
         <CircularProgress isIndeterminate color="primary.500" />
@@ -49,10 +66,13 @@ const CharactersProvider: React.FC<Props> = ({ children }) => {
   }
 
   const state : Context["state"] = {
-    characters
+    characters,
+    secondCharacters
   };
-
-  return <><CharactersContext.Provider value={{state}}>{children}</CharactersContext.Provider></>
+  const actions = {
+    searchByName: handleSearchByName,
+  };
+  return <CharactersContext.Provider value={{state, actions}}>{children}</CharactersContext.Provider>
 }
 
 export { CharactersContext as default, CharactersProvider as Provider }

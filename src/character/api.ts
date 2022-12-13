@@ -1,7 +1,9 @@
 import requester from '@/config/http/axios';
 
-import {Character} from './types'
+import {responseCharacter} from './types'
 
 export default {
-  searchByName: (name = "rick"): Promise<Character[]> => requester.get(`character/?name=${name}`, {}),
+  characters: {
+    findByName: (name: string): Promise<responseCharacter> => requester.get(`character/?name=${name}`, {}),
+  }
 }
