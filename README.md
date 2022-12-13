@@ -1,4 +1,5 @@
 # React-template
+
 Template with vite, react, ts, chackra and others
 
 Requirements
@@ -21,3 +22,9 @@ npm run dev
 
 yarn dev
 Open http://localhost:5173/ with your browser to see the result.
+
+Deploy proyect
+yarn build
+yarn deploy
+
+And the visit: https://marcosrissottob.github.io/react-template/

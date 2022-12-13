@@ -4,7 +4,7 @@ import * as path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "https://github.com/MarcosRissottoB/react-template",
+  base: "https://marcosrissottob.github.io/react-template/",
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }]
   },
