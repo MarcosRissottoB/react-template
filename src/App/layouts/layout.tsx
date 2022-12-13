@@ -11,7 +11,7 @@ const Layout: React.FC<Props> = ({ children }) => (
   <Flex backgroundColor="gray.50" direction="column" flex={1}>
     <Navbar />
     <Center paddingY={6}>
-      <Container alignSelf="center" maxWidth="6xl">
+      <Container alignSelf="center" maxWidth="12xl">
         {children}
       </Container>
     </Center>

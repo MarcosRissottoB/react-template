@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   const user = useUser()
   
   return (
-    <Box backgroundColor="white" boxShadow="md">
+    <Box backgroundColor="white" boxShadow="md" maxHeight="6xl">
       <Container maxW="6xl">
         <Stack alignItems="center" as="nav" direction="row" justifyContent="space-between" paddingY={1}>
           <Image height={20} width={20} src={logo} alt="Logo"/>
