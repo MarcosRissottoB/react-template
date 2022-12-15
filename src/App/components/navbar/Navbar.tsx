@@ -12,7 +12,9 @@ const Navbar: React.FC = () => {
     <Box backgroundColor="white" boxShadow="md" maxHeight="6xl">
       <Container maxW="6xl">
         <Stack alignItems="center" as="nav" direction="row" justifyContent="space-between" paddingY={1}>
-          <Image height={20} width={20} src={logo} alt="Logo"/>
+          <Box>
+            <Image height={20} width={40} src={logo} alt="Logo"/>
+          </Box>
           <Stack alignItems="center" color="gray.500" direction="row" spacing={3}>
             <Text>{user.name}</Text>
           </Stack>
