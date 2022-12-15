@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, ButtonGroup, Input } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Flex, Input, Stack } from '@chakra-ui/react'
 
 interface searchProps {
   searchByName: (value: string, option?: boolean | undefined) => void
@@ -16,12 +16,14 @@ const SearchBar: React.FC<searchProps> = ({searchByName, isSecondCharacter = fal
   }
 
   return (
-    <Box>
-      <Input placeholder='Insert name' type="text" value={searchValue} onChange={e => setSearchValue(e.currentTarget.value)} />
-      <ButtonGroup>
-        <Button onClick={() => handleSearch(searchValue, isSecondCharacter)} colorScheme='teal' variant='outline'>Search</Button>
-      </ButtonGroup>
-    </Box>
+    <Stack direction='row'>
+      <Flex minWidth='max-content' gap='2'  p={2}>
+        <Input placeholder='Insert name' type="text" value={searchValue} onChange={e => setSearchValue(e.currentTarget.value)} />
+        <ButtonGroup>
+          <Button onClick={() => handleSearch(searchValue, isSecondCharacter)} colorScheme='teal' variant='outline'>Search</Button>
+        </ButtonGroup>
+      </Flex>
+    </Stack>
   )
 }
 

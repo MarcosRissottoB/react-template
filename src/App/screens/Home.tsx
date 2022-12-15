@@ -24,9 +24,9 @@ const HomeScreen: React.FC = () => {
               <Card key={item.id} item={item} />)}
         </SimpleGrid>
       </Stack>
-      <Stack flex={1} spacing={6}>
+      <Stack flex={1} spacing={2}>
         <Stack direction='row'>
-          <Flex minWidth='max-content' alignItems='center' gap='2'>
+          <Flex minWidth='max-content' gap='0' direction='row'>
             <Title>Character #2</Title>
             <Spacer />
             <SearchBar searchByName={searchByName} isSecondCharacter={true}/>
