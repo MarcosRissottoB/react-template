@@ -27,4 +27,4 @@ Deploy proyect
 yarn build
 yarn deploy
 
-And the visit: https://marcosrissottob.github.io/react-template/
+And visit: https://marcosrissottob.github.io/react-template/
