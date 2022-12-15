@@ -4,6 +4,6 @@ import {responseCharacter} from './types'
 
 export default {
   characters: {
-    findByName: (name: string): Promise<responseCharacter> => requester.get(`character/?name=${name}`, {}),
+    findByName: (name: string, pageNumber: number): Promise<responseCharacter> => requester.get(`character/?page=${pageNumber}&name=${name}`, {}),
   }
 }

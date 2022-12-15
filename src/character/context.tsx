@@ -10,7 +10,7 @@ export interface Context {
     secondCharacters: responseCharacter | undefined,
   };
   actions: {
-    searchByName: (name: string, option?: boolean) => Promise<void>;
+    searchByName: (name: string, pageNumber: number, option?: boolean) => Promise<void>;
   };
 }
 
@@ -25,8 +25,8 @@ const CharactersProvider: React.FC<Props> = ({ children }) => {
   const [secondCharacters, setSecondCharacters] = React.useState<responseCharacter | undefined>();
   const [status, setStatus] = React.useState<"pending" | "resolved" | "rejected" >("resolved")
 
-  async function handleSearchByName(name: string, option?: boolean) {
-     return api.characters.findByName(name).then((characters) => {
+  async function handleSearchByName(name: string, pageNumber: number, option?: boolean) {
+     return api.characters.findByName(name, pageNumber).then((characters) => {
       if (option) {
         setSecondCharacters(characters)
       } else {
