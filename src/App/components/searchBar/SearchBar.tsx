@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { Button, ButtonGroup, Flex, Input, Stack } from '@chakra-ui/react'
+import { Button, ButtonGroup, Flex, Input, Stack, Text } from '@chakra-ui/react'
 
 interface searchProps {
   searchByName: (value: string, pageNumber: number, option?: boolean | undefined) => void
-  pageNumber: number
+  pageNumber: number,
   isSecondCharacter?: boolean
 }
 

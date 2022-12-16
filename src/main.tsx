@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <UserProvider>
         <CharactersProvider>
           <Layout>
-           <HomeScreen />
+            <HomeScreen />
           </Layout>
         </CharactersProvider>
       </UserProvider>

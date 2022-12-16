@@ -7,7 +7,7 @@ import api from "./api";
 export interface Context {
   state: {
     characters: responseCharacter | undefined,
-    secondCharacters: responseCharacter | undefined,
+    secondCharacters: responseCharacter | undefined
   };
   actions: {
     searchByName: (name: string, pageNumber: number, option?: boolean) => Promise<void>;
@@ -26,21 +26,25 @@ const CharactersProvider: React.FC<Props> = ({ children }) => {
   const [status, setStatus] = React.useState<"pending" | "resolved" | "rejected" >("resolved")
 
   async function handleSearchByName(name: string, pageNumber: number, option?: boolean) {
-     return api.characters.findByName(name, pageNumber).then((characters) => {
+    try {
+      const response = await api.characters.findByName(name, pageNumber)
       if (option) {
-        setSecondCharacters(characters)
+        setSecondCharacters(response)
       } else {
-        setCharacters(characters);
+        setCharacters(response);
       }
       setStatus("resolved");
-    })
+    } catch(error) {
+      console.log("error", error)
+      setStatus("rejected")
+    }
   }
 
   if (status === "rejected") {
     return (
       <Flex alignItems="center" justifyContent="center" paddingY={12}>
         <Text backgroundColor="primary.100" borderRadius="md" color="primary.700" padding={4}>
-          Press F to pay respect
+          Action rejected
         </Text>
       </Flex>
     );
