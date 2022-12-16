@@ -101,21 +101,20 @@ const HomeScreen: React.FC = () => {
           templateRows="repeat(1, 1fr)"
           templateColumns="repeat(6, 1fr)"
           gap={2}
-          bg="teal"
         >
-          <GridItem colSpan={(characters && secondCharacters) ? 2:3}>
+          <GridItem colSpan={(characters && secondCharacters) ? 2:3}  bg="teal">
             <Title>Character #1 - Episodes</Title>
             <Box border="1px" borderColor="gray.200" minHeight="500px">
               {characters && firstCharacterEpisodes?.map(episode => <Text key={episode} color="black">{episode}</Text>)}
             </Box>
           </GridItem>
-          {(characters && secondCharacters) && <GridItem colSpan={2}>
+          {(characters && secondCharacters) && <GridItem colSpan={2}  bg="teal">
             <Title>Character #1 & #2 - Shared Episodes</Title>
             <Box border="1px" borderColor="gray.200" minHeight="500px">
               {(sharedEpisodes.length) > 0 ? (sharedEpisodes?.map(episode => <Text key={episode} color="black">{episode}</Text>)) : <Text color="black">These character have no shared episodes</Text>}
             </Box>
           </GridItem>}
-          <GridItem colSpan={(characters && secondCharacters) ? 2:3}>
+          <GridItem colSpan={(characters && secondCharacters) ? 2:3}  bg="teal">
             <Title>Character #2 - Episodes</Title>
             <Box border="1px" borderColor="gray.200" minHeight="500px">
               {secondCharacters && secondCharacterEpisodes?.map(episode => <Text key={episode} color="black">{episode}</Text>)}

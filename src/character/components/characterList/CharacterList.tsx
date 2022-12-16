@@ -14,7 +14,7 @@ const CharacterList: React.FC<Props> = ({characters}) => {
       {!characters && 
         <Stack flex={1} spacing={2}>
           <Flex minWidth='max-content' direction='row' alignItems="center">
-            <Text fontSize='2xl' color='teal'>First search a character</Text>
+            <Text fontSize='2xl' color='teal' p={2}>First search a character</Text>
           </Flex>
         </Stack>}
       {characters?.results.map((item) => 
