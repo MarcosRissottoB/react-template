@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Button, ButtonGroup, Flex, SimpleGrid, Spacer, Stack } from "@chakra-ui/react";
+import { Button, ButtonGroup, Flex, Spacer, Stack } from "@chakra-ui/react";
 
 import { useCharacters } from "@/character/hooks";
-import Card from "@/App/components/card";
 import Title from "@/App/components/title";
 import SearchBar from "@/App/components/searchBar";
+import CharacterList from "@/character/components/characterList";
 
 const HomeScreen: React.FC = () => {
   const [characters, secondCharacters, searchByName] = useCharacters()
@@ -12,9 +12,9 @@ const HomeScreen: React.FC = () => {
   const [secondCharacterPageNumber, setSecondCharacterPageNumber] = React.useState(1)
   return (
     <Stack direction='row'>
-      <Stack flex={1} spacing={6}>
+      <Stack flex={1} spacing={2}>
         <Stack direction='row'>
-          <Flex minWidth='max-content' alignItems='center' gap='2'>
+          <Flex minWidth='max-content' gap='0' direction='row' alignItems="center">
             <Title>Character #1</Title>
             <Spacer />
             <SearchBar searchByName={searchByName} pageNumber={pageNumber} />
@@ -24,10 +24,7 @@ const HomeScreen: React.FC = () => {
             </ButtonGroup>
           </Flex>
         </Stack>
-        <SimpleGrid columns={3} spacing={5}>
-          {characters?.results.map(item => 
-              <Card key={item.id} item={item} />)}
-        </SimpleGrid>
+        <CharacterList characters={characters} />
       </Stack>
       <Stack flex={1} spacing={2}>
         <Stack direction='row'>
@@ -41,11 +38,7 @@ const HomeScreen: React.FC = () => {
             </ButtonGroup>
           </Flex>
         </Stack>
-        {/* TODO: Remove at CharacterList component */}
-        <SimpleGrid columns={3} spacing={5}>
-          {secondCharacters?.results.map(item => 
-              <Card key={item.id} item={item} />)}
-        </SimpleGrid>
+       <CharacterList characters={secondCharacters} />
          {/* TODO: Add EpisodesList component */}
       </Stack>
     </Stack>

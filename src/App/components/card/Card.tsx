@@ -21,8 +21,8 @@ const Card: React.FC<Props> = ({item}) => {
       />
       <Stack direction="row" alignItems="center">
         <CardBody>
-          <Heading size='md'>{item.name}</Heading>
-          <Text py='2'>
+          <Heading size='sm'>{item.name}</Heading>
+          <Text py='1'>
             {item.status} -  {item.species}
           </Text>
         </CardBody>
