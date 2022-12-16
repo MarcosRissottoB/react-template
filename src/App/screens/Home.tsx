@@ -21,12 +21,13 @@ const HomeScreen: React.FC = () => {
   }
 
   useEffect(() => {
-    const episodes = splitEpisode(characters?.results[0].episode)
+    const episodes: any = splitEpisode(characters?.results[0].episode)
     setFirstCharacterEpisodes(episodes)
   }, [characters])
 
   useEffect(() => {
-    const episodes = splitEpisode(secondCharacters?.results[0].episode)
+
+    const episodes: any = splitEpisode(secondCharacters?.results[0].episode)
     setSecondCharacterEpisodes(episodes)
   }, [secondCharacters])
 
@@ -44,14 +45,14 @@ const HomeScreen: React.FC = () => {
 
   return (
     <Grid
-        // h="800px"
+        h={(characters || secondCharacters) ? "1200px" : "500px"}
         templateRows="repeat(2, 1fr)"
         templateColumns="repeat(1, 1fr)"
         gap={2}
       > 
         <GridItem rowSpan={1}>
           <Grid
-            h="500px"
+             h={(characters || secondCharacters) ? "1200px" : "500px"}
             templateRows="repeat(1, 1fr)"
             templateColumns="repeat(6, 1fr)"
             gap={2}
@@ -105,21 +106,19 @@ const HomeScreen: React.FC = () => {
           <GridItem colSpan={(characters && secondCharacters) ? 2:3}>
             <Title>Character #1 - Episodes</Title>
             <Box border="1px" borderColor="gray.200" minHeight="500px">
-              {characters && firstCharacterEpisodes?.map(episode => <Title key={episode}>{episode}</Title>)}
+              {characters && firstCharacterEpisodes?.map(episode => <Text key={episode} color="black">{episode}</Text>)}
             </Box>
           </GridItem>
           {(characters && secondCharacters) && <GridItem colSpan={2}>
             <Title>Character #1 & #2 - Shared Episodes</Title>
-            <Stack direction="row">
-              <Box border="1px" borderColor="gray.200" minHeight="500px">
-                {(sharedEpisodes.length) > 0 ? (sharedEpisodes?.map(episode => <Text key={episode}>{episode}</Text>)) : <Text>These character have no shared episodes</Text>}
-              </Box>
-            </Stack>
+            <Box border="1px" borderColor="gray.200" minHeight="500px">
+              {(sharedEpisodes.length) > 0 ? (sharedEpisodes?.map(episode => <Text key={episode} color="black">{episode}</Text>)) : <Text color="black">These character have no shared episodes</Text>}
+            </Box>
           </GridItem>}
           <GridItem colSpan={(characters && secondCharacters) ? 2:3}>
             <Title>Character #2 - Episodes</Title>
             <Box border="1px" borderColor="gray.200" minHeight="500px">
-              {secondCharacters && secondCharacterEpisodes?.map(episode => <Title key={episode}>{episode}</Title>)}
+              {secondCharacters && secondCharacterEpisodes?.map(episode => <Text key={episode} color="black">{episode}</Text>)}
             </Box>
           </GridItem>
         </Grid>
