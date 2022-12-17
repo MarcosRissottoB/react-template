@@ -5,6 +5,7 @@ import { useCharacters } from "@/character/hooks";
 import Title from "@/App/components/title";
 import SearchBar from "@/App/components/searchBar";
 import CharacterList from "@/character/components/characterList";
+import CharacterEpisodeList from "@/character/characterEpisodeList";
 
 const HomeScreen: React.FC = () => {
   const [characters, secondCharacters, searchByName] = useCharacters()
@@ -52,7 +53,6 @@ const HomeScreen: React.FC = () => {
       > 
         <GridItem rowSpan={1}>
           <Grid
-            //  h={(characters || secondCharacters) ? "1000px" : "500px"}
             templateRows="repeat(1, 1fr)"
             templateColumns="repeat(6, 1fr)"
             gap={2}
@@ -96,32 +96,14 @@ const HomeScreen: React.FC = () => {
           </Grid>
         </GridItem>
         <GridItem rowSpan={1}>
-        <Grid
-          minHeight="500px"
-          templateRows="repeat(1, 1fr)"
-          templateColumns="repeat(6, 1fr)"
-          gap={2}
-        >
-          <GridItem colSpan={(characters && secondCharacters) ? 2:3}  bg="teal">
-            <Title>Character #1 - Episodes</Title>
-            <Box border="1px" borderColor="gray.200" minHeight="500px">
-              {characters && firstCharacterEpisodes?.map(episode => <Text key={episode} color="black">{episode}</Text>)}
-            </Box>
-          </GridItem>
-          {(characters && secondCharacters) && <GridItem colSpan={2}  bg="teal">
-            <Title>Character #1 & #2 - Shared Episodes</Title>
-            <Box border="1px" borderColor="gray.200" minHeight="500px">
-              {(sharedEpisodes.length) > 0 ? (sharedEpisodes?.map(episode => <Text key={episode} color="black">{episode}</Text>)) : <Text color="black">These character have no shared episodes</Text>}
-            </Box>
-          </GridItem>}
-          <GridItem colSpan={(characters && secondCharacters) ? 2:3}  bg="teal">
-            <Title>Character #2 - Episodes</Title>
-            <Box border="1px" borderColor="gray.200" minHeight="500px">
-              {secondCharacters && secondCharacterEpisodes?.map(episode => <Text key={episode} color="black">{episode}</Text>)}
-            </Box>
-          </GridItem>
-        </Grid>
-      </GridItem>
+          <CharacterEpisodeList 
+            characters={characters}
+            secondCharacters={secondCharacters}
+            firstCharacterEpisodes={firstCharacterEpisodes}
+            sharedEpisodes={sharedEpisodes}
+            secondCharacterEpisodes={secondCharacterEpisodes}
+          />
+        </GridItem>
     </Grid>
     
   )
