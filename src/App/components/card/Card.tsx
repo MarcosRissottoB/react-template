@@ -12,10 +12,13 @@ const Card: React.FC<Props> = ({item}) => {
       direction={{ base: 'column', sm: 'row' }}
       overflow='hidden'
       variant='outline'
+      maxW={{ base: '100%', sm: '280px' }}
+       maxH={{ base: '100%', sm: '120px' }}
     >
       <Image
         objectFit='cover'
-        maxW={{ base: '100%', sm: '150px' }}
+        boxSize='100px'
+        maxW={{ base: '100%', sm: '120px' }}
         src={item.image}
         alt='Caffe Latte'
       />

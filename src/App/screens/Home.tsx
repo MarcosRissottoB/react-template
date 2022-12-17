@@ -52,13 +52,13 @@ const HomeScreen: React.FC = () => {
       > 
         <GridItem rowSpan={1}>
           <Grid
-             h={(characters || secondCharacters) ? "1200px" : "500px"}
+            //  h={(characters || secondCharacters) ? "1000px" : "500px"}
             templateRows="repeat(1, 1fr)"
             templateColumns="repeat(6, 1fr)"
             gap={2}
           >
             <GridItem colSpan={3} >
-              <Box border="1px" borderColor="gray.200" height="500px">
+              <Box border="1px" borderColor="gray.200" height={(characters ) ? "900px" : "500px"}>
                 <Stack flex={1} spacing={2}>
                   <Stack direction="row">
                     <Flex minWidth="max-content" gap="0" direction="row" alignItems="center">
@@ -76,7 +76,7 @@ const HomeScreen: React.FC = () => {
               </Box>
             </GridItem>
             <GridItem colSpan={3}>
-              <Box border="1px" borderColor="gray.200" height="500px">
+              <Box border="1px" borderColor="gray.200" height={(secondCharacters) ? "900px" : "500px"}>
                 <Stack flex={1} spacing={2}>
                   <Stack direction="row">
                     <Flex minWidth="max-content" gap="0" direction="row" alignItems="center">

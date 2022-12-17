@@ -10,7 +10,7 @@ interface Props {
 
 const CharacterList: React.FC<Props> = ({characters}) => {
   return (
-    <SimpleGrid columns={3} spacing={2} >
+    <SimpleGrid columns={3} spacing={1} p={1}>
       {!characters && 
         <Stack flex={1} spacing={2}>
           <Flex minWidth='max-content' direction='row' alignItems="center">
