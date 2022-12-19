@@ -5,7 +5,7 @@ import { useCharacters } from "@/character/hooks";
 import Title from "@/App/components/title";
 import SearchBar from "@/App/components/searchBar";
 import CharacterList from "@/character/components/characterList";
-import CharacterEpisodeList from "@/character/characterEpisodeList";
+import CharacterEpisodeList from "@/character/components/characterEpisodeList";
 
 const HomeScreen: React.FC = () => {
   const [characters, secondCharacters, searchByName] = useCharacters()
@@ -34,7 +34,6 @@ const HomeScreen: React.FC = () => {
 
   const handleSharedEpisodes = (firstCharacterEpisodes: string[], secondCharacterEpisodes: string[]) => {
     const episodes = firstCharacterEpisodes.filter(episode => secondCharacterEpisodes.includes(episode))
-    console.log("episodes", episodes);
     setSharedEpisodes(episodes)
   }
 
